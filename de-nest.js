@@ -1,26 +1,33 @@
-let denest = (element,options) => 
+
+function denestElement(element,newElement,options)
 {
-    let newElement;
-
-    // handling tagNames
-    if(options && options.tagName)
-    {
-        newElement = document.createElement(options.tagName.toLowerCase());
-    }
-    else 
-    {
-        newElement = document.createElement(element.tagName.toLowerCase());
-    }
-
-    console.log(newElement);
-
     while(element && element.children)
     {
-       if(element && element.children)
+       if(element.children)
        {
            element = element.children[0];
        }
     }
 
     return newElement;
+}
+
+function getTagName(element,options)
+{
+    // handling tagNames
+    if(options && options.tagName)
+    {
+        return document.createElement(options.tagName.toLowerCase());
+    }
+    else 
+    {
+        return document.createElement(element.tagName.toLowerCase());
+    }
+}
+
+let denest = (element,options) => 
+{
+    let newElement = getTagName(element,options);
+
+    return denestElement(element,newElement,options);
 }
