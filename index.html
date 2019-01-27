@@ -2,6 +2,21 @@
     <head>
         <title>De-Nest Test</title>
         <script src="./de-nest.js"></script>
+        <script>
+            window.div = document.createElement('div');
+            window.html = '<span class="john-wick neo">'+ 
+                                '<article class="foo" style="color:red;":>'+
+                                    '<a href="http://google.com">'+
+                                    '<p data="bird is the word">Coffee is GREAT</p>'+
+                                    '</a>'+
+                                '</article>'+
+                            '</span>';
+            
+            window.div.innerHTML = html;
+
+            console.log(window.div);
+            console.log(denest(window.div));
+        </script>
     </head>
     <body>
         <h1>De-Nest Test</h1>
