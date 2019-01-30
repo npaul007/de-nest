@@ -14,8 +14,12 @@
             
             window.div.innerHTML = html;
 
-            console.log(window.div);
-            console.log(denest(window.div));
+            window.options = {
+                tagName:"span",
+                keepAllAttr:true
+            };
+  
+            console.log(denest(window.div,window.options));
         </script>
     </head>
     <body>

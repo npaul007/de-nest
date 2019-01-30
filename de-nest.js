@@ -5,6 +5,15 @@ function denestElement(element,newElement,options)
     {
        if(element.children)
        {
+        console.log(element.attributes)
+
+            if(element.attributes && (options && options.keepAllAttr))
+            {
+                Array.from(element.attributes).forEach(attr => {
+                    newElement.setAttribute(attr.name,attr.value);
+                });
+            }
+
            element = element.children[0];
        }
     }
