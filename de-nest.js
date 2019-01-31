@@ -1,40 +1,49 @@
-
-function denestElement(element,newElement,options)
-{
-    while(element && element.children)
+const DeNester = Object.freeze({
+    handleAttributes:function(element,newElement,attributeOptions)
     {
-       if(element.children)
-       {
-            if(element.attributes && (options && options.keepAllAttr))
+        Array.from(element.attributes).forEach(attr => {
+            if(attributeOptions.keepAllAttributes)
             {
-                Array.from(element.attributes).forEach(attr => {
-                    newElement.setAttribute(attr.name,attr.value);
-                });
+                newElement.setAttribute(attr.name,attr.value);
             }
-
-           element = element.children[0];
-       }
-    }
-
-    return newElement;
-}
-
-function getTagName(element,options)
-{
-    // handling tagNames
-    if(options && options.tagName)
+        });
+    },    
+    denestElement:function(element,newElement,options)
     {
-        return document.createElement(options.tagName.toLowerCase());
-    }
-    else 
+        while(element && element.children)
+        {
+            if(element.attributes && (options && options.attributeOptions))
+            {
+               this. handleAttributes(element,newElement,options.attributeOptions);
+            }
+    
+            if(element.children)
+            {
+                element = element.children[0];
+            }
+        }
+    
+        return newElement;
+    },    
+    getElementWithTag:function(element,options)
     {
-        return document.createElement(element.tagName.toLowerCase());
+        // handling tagNames
+        if(options && options.tagName)
+        {
+            return document.createElement(options.tagName.toLowerCase());
+        }
+        else 
+        {
+            return document.createElement(element.tagName.toLowerCase());
+        }
+    },    
+    denest:function (element,options)
+    {
+        let newElement = this.getElementWithTag(element,options);
+    
+        return this.denestElement(element,newElement,options);
     }
-}
+});
 
-let denest = (element,options) => 
-{
-    let newElement = getTagName(element,options);
 
-    return denestElement(element,newElement,options);
-}
+

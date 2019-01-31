@@ -16,10 +16,18 @@
 
             window.options = {
                 tagName:"span",
-                keepAllAttr:true
+                attributeOptions:{
+                    keepAllAttributes:true,
+                    keepTheseAttributes:[
+                        {
+                            name:'class',
+                            value:'foo'
+                        }
+                    ]
+                }
             };
   
-            console.log(denest(window.div,window.options));
+            console.log(DeNester.denest(window.div,window.options));
         </script>
     </head>
     <body>
