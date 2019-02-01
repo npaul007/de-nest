@@ -2,7 +2,9 @@ const DeNester = Object.freeze({
     handleAttributes:function(element,newElement,attributeOptions)
     {
         Array.from(element.attributes).forEach(attr => {
-            if(attributeOptions.keepAllAttributes)
+            let attrNameSpecified = attributeOptions.keepTheseAttributes.findIndex(attributeName =>  attributeName == attr.name) > -1 ;
+
+            if(attributeOptions.keepAllAttributes || attrNameSpecified)
             {
                 newElement.setAttribute(attr.name,attr.value);
             }
