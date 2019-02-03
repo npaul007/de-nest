@@ -9,10 +9,49 @@ const DeNester = Object.freeze({
     handleAttributes:function(element,newElement,attributeOptions)
     {
         Array.from(element.attributes).forEach(attr => {
-            let attrNameSpecified = attributeOptions.keepTheseAttributes.findIndex(attributeName =>  attributeName == attr.name) > -1 ;
+            let attrNameSpecified = false;
+            let attrNameMatch = false;
+            let attrValueMatch = false;
+            let attrValueSpecified = false;
+
+            // handling explicit name matches
+            if(attributeOptions.keepTheseAttrByName && attributeOptions.keepTheseAttrByName.length > 0)
+            {
+                attrNameSpecified = attributeOptions.keepTheseAttrByName.findIndex(attributeName =>  {
+                    return attributeName == attr.name
+                }) > -1;    
+            }
+
+            // handling explicit value matches
+            if(attributeOptions.keepTheseAttrByValue && attributeOptions.keepTheseAttrByValue.length > 0)
+            {
+                attrValueSpecified = attributeOptions.keepTheseAttrByValue.findIndex(attributeValue =>  {
+                    return attributeValue == attr.value
+                }) > -1;    
+            }
+
+            // handling regex for value
+            if(attributeOptions.keepValueMatch)
+            {
+                attrValueMatch = ( attr.name.match(attributeOptions.keepValueMatch) || new Array() ).length > 0;
+            }
+
+            // handling regex for name
+            if(attributeOptions.keepNameMatch)
+            {
+                attrNameMatch = ( attr.name.match(attributeOptions.keepNameMatch) || new Array() ).length > 0;
+            }
 
             // we add the attribute if it is specified or if we are told to keep them all
-            if(attributeOptions.keepAllAttributes || attrNameSpecified)
+            const conidition = ( 
+                                    attributeOptions.keepAllAttributes || 
+                                    attrNameSpecified || 
+                                    attrNameMatch || 
+                                    attrValueMatch ||
+                                    attrValueSpecified
+                               );
+                               
+            if(conidition)
             {
                 newElement.setAttribute(attr.name,attr.value);
             }
