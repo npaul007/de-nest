@@ -5,9 +5,10 @@
         <script>
             window.div = document.createElement('div');
             window.html = '<span class="john-wick neo">'+ 
-                                '<article class="foo" style="color:red;":>'+
-                                    '<a href="http://google.com">'+
+                                '<article class="foo" style="color:red;":ba ="sheep">'+
+                                    '<a href="http://google.com" bar="foo">'+
                                     '<p data="bird is the word">Coffee is GREAT</p>'+
+                                    'woo'+
                                     '</a>'+
                                 '</article>'+
                             '</span>';
@@ -18,14 +19,24 @@
                 tagName:"span",
                 attributeOptions:{
                     keepAllAttributes:false,
-                    keepTheseAttributes:['class','data']
+                    keepTheseAttributes:['class','data'],
+                    keepNameMatch:new RegExp("/bar/","g"),
+                    keepValueMatch:new RegExp("/foo/","g")
                 },
                 textOptions:{
                     keepAllText:true
                 }
             };
-  
-            console.log(DeNester.denest(window.div,window.options));
+
+            console.log("options:",window.options);
+            
+            window.denestedEl = DeNester.denest(window.div,window.options);
+
+            console.log("before:",window.div);
+            console.log("after:",window.denestedEl);
+
+            document.write("before: "+window.div.outerHTML);
+            document.write("<br>after: <br>"+ window.denestedEl.outerHTML);
         </script>
     </head>
     <body>

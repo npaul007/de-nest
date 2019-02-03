@@ -1,17 +1,16 @@
 const DeNester = Object.freeze({
     handleText(element,newElement,textOptions)
     {
-        // we only append if the elements immediate child is a text node so that we don't append duplicates
-        if(textOptions.keepAllText && element.childNodes[0].nodeType == 3)
+        if(newElement.textContent.trim() == "")
         {
-            newElement.textContent += element.textContent;
+            newElement.textContent = element.textContent;
         }
     },
     handleAttributes:function(element,newElement,attributeOptions)
     {
         Array.from(element.attributes).forEach(attr => {
             let attrNameSpecified = attributeOptions.keepTheseAttributes.findIndex(attributeName =>  attributeName == attr.name) > -1 ;
-            
+
             // we add the attribute if it is specified or if we are told to keep them all
             if(attributeOptions.keepAllAttributes || attrNameSpecified)
             {
@@ -29,11 +28,12 @@ const DeNester = Object.freeze({
                this.handleAttributes(element,newElement,options.attributeOptions);
             }
 
-            if(options && options.textOptions)
+            if(element.textContent && options && options.textOptions)
             {
                 this.handleText(element,newElement,options.textOptions);
             }
-    
+            
+            // if a child exists we move to it
             if(element.children)
             {
                 element = element.children[0];
