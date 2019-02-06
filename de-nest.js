@@ -3,7 +3,19 @@ const DeNester = Object.freeze({
     {
         if(newElement.textContent.trim() == "")
         {
-            newElement.textContent = element.textContent;
+
+            if(textOptions.keepTextMatch)
+            {
+                let matches = element.textContent.match(textOptions.keepTextMatch);
+                matches && matches.forEach(m =>{
+                    newElement.textContent += m;
+                });
+            }
+
+            if(textOptions.keepAllText)
+            {
+                newElement.textContent = element.textContent;            
+            }
         }
     },
     handleAttributes:function(element,newElement,attributeOptions)
@@ -43,7 +55,7 @@ const DeNester = Object.freeze({
             }
 
             // we add the attribute if it is specified or if we are told to keep them all
-            const conidition = ( 
+            const condition = ( 
                                     attributeOptions.keepAllAttributes || 
                                     attrNameSpecified || 
                                     attrNameMatch || 
@@ -51,7 +63,7 @@ const DeNester = Object.freeze({
                                     attrValueSpecified
                                );
                                
-            if(conidition)
+            if(condition)
             {
                 newElement.setAttribute(attr.name,attr.value);
             }
