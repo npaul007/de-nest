@@ -1,0 +1,28 @@
+{
+  "name": "de-nest",
+  "version": "1.0.0",
+  "description": "A module that un-nests nested html elements",
+  "main": "de-nest.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/npaul007/de-nest.git"
+  },
+  "keywords": [
+    "html",
+    "nested",
+    "unnest",
+    "attributes",
+    "dom",
+    "element",
+    "elements"
+  ],
+  "author": "Nathanael Paulemon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/npaul007/de-nest/issues"
+  },
+  "homepage": "https://github.com/npaul007/de-nest#readme"
+}
