@@ -1,0 +1,14 @@
+{
+  "name": "de-nest-test",
+  "version": "1.0.0",
+  "description": "testing code for de-nest",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha ./index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mocha": "^5.2.0"
+  }
+}
