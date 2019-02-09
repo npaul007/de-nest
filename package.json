@@ -26,6 +26,6 @@
   },
   "homepage": "https://github.com/npaul007/de-nest#readme",
   "dependencies": {
-    "html-document": "^0.8.1"
+    "mock-browser": "^0.92.14"
   }
 }

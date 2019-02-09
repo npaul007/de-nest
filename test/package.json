@@ -10,7 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "denester": "^1.0.1",
-    "html-document": "^0.8.1",
-    "mocha": "^5.2.0"
+    "mocha": "^5.2.0",
+    "mock-browser": "^0.92.14"
   }
 }

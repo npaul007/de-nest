@@ -1,5 +1,7 @@
-const Document = require('html-document');
-const document = new Document();
+const MockBrowser = require('mock-browser').mocks.MockBrowser;
+const mock = new MockBrowser();
+
+const document = mock.getDocument();
 
 const DeNester = Object.freeze({
     handleText(element,newElement,textOptions)
