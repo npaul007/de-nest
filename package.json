@@ -1,8 +1,8 @@
 {
-  "name": "de-nest",
-  "version": "1.0.0",
+  "name": "denester",
+  "version": "1.0.1",
   "description": "A module that un-nests nested html elements",
-  "main": "de-nest.js",
+  "main": "./src/de-nest.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

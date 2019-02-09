@@ -9,6 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "denester": "^1.0.1",
+    "jsdom": "^13.2.0",
     "mocha": "^5.2.0"
   }
 }
