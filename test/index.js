@@ -1,13 +1,11 @@
 
 console.log("***Commencing tests for de-nest module***");
 
+const Document = require('html-document');
+const document = new Document();
+
 const assert = require('assert');
 const denester = require('../src/de-nest.js');
-const jsdom = require('jsdom');
-const { JSDOM } = jsdom;
-
-const { document } = (new JSDOM(`<!DOCTYPE html><body></body></html>`)).window;
-
 
 // setting up sample nested element
 let html ='<span class="john-wick neo">'+ 
@@ -19,11 +17,15 @@ let html ='<span class="john-wick neo">'+
                     '</article>'+
                 '</span>';
 
-let nestedEl =  document.createEleement('div');
-nestedEl.innerHTML = html;
+let nestedEl = document.createElement('div');
+nestedEl.innerHTML = nestedEl;
 
-describe('Array', function() {
-    it('should return -1 when the value is not present', function() {
-      assert.equal([1,2,3].indexOf(4), -1);
+
+describe('Tests for DeNester', function() {
+    it('1) Unest with no options', function() {
+    	let unestedEl_1 = denester.denest(nestedEl);
+    	console.log(unestedEl_1.outerHTML);
+
+      	assert.equal([1,2,3].indexOf(4), -1);
     });
 });

@@ -24,5 +24,8 @@
   "bugs": {
     "url": "https://github.com/npaul007/de-nest/issues"
   },
-  "homepage": "https://github.com/npaul007/de-nest#readme"
+  "homepage": "https://github.com/npaul007/de-nest#readme",
+  "dependencies": {
+    "html-document": "^0.8.1"
+  }
 }

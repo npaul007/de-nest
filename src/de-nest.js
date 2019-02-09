@@ -1,3 +1,6 @@
+const Document = require('html-document');
+const document = new Document();
+
 const DeNester = Object.freeze({
     handleText(element,newElement,textOptions)
     {

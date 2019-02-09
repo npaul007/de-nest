@@ -1,0 +1,5 @@
+
+> de-nest-test@1.0.0 test /Users/nate/Documents/Projects/de-nest/test
+> ./node_modules/mocha/bin/mocha ./index.js
+
+***Commencing tests for de-nest module***
