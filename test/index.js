@@ -62,4 +62,44 @@ describe('Tests for DeNester', function() {
         assert.equal(unnestedEl.textContent,"Coffee is GREATwoo");
         assert.equal(unnestedEl.tagName, 'DIV'); 
     });
+
+    it("4) Un-nest and retain attributes explicitly by name & value",function(){
+        let options = {
+            attributeOptions:{
+                keepTheseAttrByName:['data'],
+                keepTheseAttrByValue:['foo']
+            }
+        };
+
+        let unnestedEl = denester.denest(nestedEl,options);
+
+        assert.equal(unnestedEl.hasAttribute('data'),true);
+        assert.equal(unnestedEl.attributes['class'].value, 'foo'); 
+    });
+
+    it('5) Un-nest and retain attributes using regex matches',function(){
+        let options = {
+            attributeOptions:{
+                keepNameMatch:new RegExp("class","g"),
+                keepValueMatch:new RegExp("sheep","g")
+            }
+        }
+
+        let unnestedEl = denester.denest(nestedEl,options);
+
+        assert.equal(unnestedEl.hasAttribute('class'),true);
+        assert.equal(unnestedEl.attributes[':ba'].value, 'sheep'); 
+    });
+
+    it('6) Un-nest and retain only text regex matches',function(){
+        let options = {
+            textOptions:{
+                keepTextMatch:new RegExp("Coffee","g")
+            }
+        }
+
+        let unnestedEl = denester.denest(nestedEl,options);
+        
+        assert.equal(unnestedEl.textContent,'Coffee');
+    });
 });

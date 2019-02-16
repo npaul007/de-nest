@@ -50,7 +50,7 @@ const DeNester = Object.freeze({
             // handling regex for value
             if(attributeOptions.keepValueMatch)
             {
-                attrValueMatch = ( attr.name.match(attributeOptions.keepValueMatch) || new Array() ).length > 0;
+                attrValueMatch = ( attr.value.match(attributeOptions.keepValueMatch) || new Array() ).length > 0;
             }
 
             // handling regex for name
